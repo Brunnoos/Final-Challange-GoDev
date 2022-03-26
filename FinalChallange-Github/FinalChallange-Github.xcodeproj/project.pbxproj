@@ -13,6 +13,9 @@
 		99FC215027EF9CB40062820F /* FinalChallange_Github.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 99FC214E27EF9CB40062820F /* FinalChallange_Github.xcdatamodeld */; };
 		99FC215227EF9CB60062820F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99FC215127EF9CB60062820F /* Assets.xcassets */; };
 		99FC215527EF9CB60062820F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99FC215327EF9CB60062820F /* LaunchScreen.storyboard */; };
+		99FC215D27EFA1E90062820F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC215C27EFA1E90062820F /* MainTabBarController.swift */; };
+		99FC215F27EFA33A0062820F /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC215E27EFA33A0062820F /* FavoritesViewController.swift */; };
+		99FC216127EFA34A0062820F /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC216027EFA34A0062820F /* TeamViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		99FC215127EF9CB60062820F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99FC215427EF9CB60062820F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99FC215627EF9CB60062820F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99FC215C27EFA1E90062820F /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		99FC215E27EFA33A0062820F /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		99FC216027EFA34A0062820F /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +64,56 @@
 			children = (
 				99FC214527EF9CB40062820F /* AppDelegate.swift */,
 				99FC214727EF9CB40062820F /* SceneDelegate.swift */,
-				99FC214927EF9CB40062820F /* SearchViewController.swift */,
 				99FC215127EF9CB60062820F /* Assets.xcassets */,
-				99FC215327EF9CB60062820F /* LaunchScreen.storyboard */,
-				99FC215627EF9CB60062820F /* Info.plist */,
 				99FC214E27EF9CB40062820F /* FinalChallange_Github.xcdatamodeld */,
+				99FC215627EF9CB60062820F /* Info.plist */,
+				99FC216F27EFA62F0062820F /* Storyboards */,
+				99FC216E27EFA6230062820F /* Resources */,
+				99FC216D27EFA6120062820F /* View Models */,
+				99FC217027EFA6720062820F /* Models */,
+				99FC216427EFA4D20062820F /* Controllers */,
 			);
 			path = "FinalChallange-Github";
+			sourceTree = "<group>";
+		};
+		99FC216427EFA4D20062820F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				99FC214927EF9CB40062820F /* SearchViewController.swift */,
+				99FC216027EFA34A0062820F /* TeamViewController.swift */,
+				99FC215E27EFA33A0062820F /* FavoritesViewController.swift */,
+				99FC215C27EFA1E90062820F /* MainTabBarController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		99FC216D27EFA6120062820F /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		99FC216E27EFA6230062820F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		99FC216F27EFA62F0062820F /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				99FC215327EF9CB60062820F /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		99FC217027EFA6720062820F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +188,11 @@
 			files = (
 				99FC214A27EF9CB40062820F /* SearchViewController.swift in Sources */,
 				99FC215027EF9CB40062820F /* FinalChallange_Github.xcdatamodeld in Sources */,
+				99FC215D27EFA1E90062820F /* MainTabBarController.swift in Sources */,
 				99FC214627EF9CB40062820F /* AppDelegate.swift in Sources */,
+				99FC215F27EFA33A0062820F /* FavoritesViewController.swift in Sources */,
 				99FC214827EF9CB40062820F /* SceneDelegate.swift in Sources */,
+				99FC216127EFA34A0062820F /* TeamViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
