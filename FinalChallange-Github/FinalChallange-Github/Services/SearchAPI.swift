@@ -39,7 +39,10 @@ class SearchAPI {
     func searchLanguage(searchParams: SearchParameters) -> RepositorySearchResponse? {
         
         var result: RepositorySearchResponse?
-        var queryString = "?q=stars:%3E=\(searchParams.minStars)+language:\(searchParams.language)"
+        
+        guard let language = searchParams.language.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return nil }
+        
+        var queryString = "?q=stars:%3E=\(searchParams.minStars)+language:\(language)"
         
         queryString += "&sort=stars"
         queryString += "&order=" + searchParams.order.rawValue
