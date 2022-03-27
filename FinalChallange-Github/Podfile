@@ -8,5 +8,6 @@ target 'FinalChallange-Github' do
   # Pods for FinalChallange-Github
 
 pod 'Alamofire', '~> 5.5'
+pod 'Kingfisher', '~> 7.0'
 
 end
