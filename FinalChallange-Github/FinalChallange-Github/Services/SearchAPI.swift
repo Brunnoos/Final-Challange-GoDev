@@ -54,9 +54,7 @@ class SearchAPI {
                 queryString += "&page=\(resultPage)"
             }
             
-            AF.request(apiURL + queryString).responseDecodable(of: RepositorySearchResponse.self) { response in
-                print (response.value ?? "Vazio")
-                
+            AF.request(apiURL + queryString).responseDecodable(of: RepositorySearchResponse.self) { response in                
                 onCompletion(response.result)
             }
         }

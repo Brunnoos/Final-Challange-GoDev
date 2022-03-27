@@ -15,19 +15,21 @@ class RepoDetailsViewController: UIViewController {
     private var safeArea: UILayoutGuide!
     private let viewModel = RepoDetailsViewModel()
     
+    private var repositoryURL: URL?
+    
     // MARK: - Lazy Main Properties
     
     lazy var repoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     lazy var repoDescriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 17)
+        label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .black
         label.numberOfLines = 0
         label.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin iaculis vestibulum purus vitae rhoncus. Praesent placerat ac felis ultricies ornare. Curabitur egestas lacus nibh, sit amet vulputate urna finibus ac."
@@ -46,8 +48,12 @@ class RepoDetailsViewController: UIViewController {
     lazy var repoLinkButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .clear
-        button.titleLabel?.text = "Abrir Repositório"
+        button.backgroundColor = UIColor(white: 0, alpha: 0.1)
+        button.layer.cornerRadius = 6
+        button.setTitleColor(.black, for: .normal)
+        button.setTitle("Abrir Repositório", for: .normal)
+        button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(onRepoLinkButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -85,7 +91,12 @@ class RepoDetailsViewController: UIViewController {
         setupSafeArea()
         setupViewLayout()
         setupComponents()
-        setupRepoImage()
+        
+        setupViewContent()
+    }
+    
+    @objc private func openRepositoryLink() {
+        
     }
     
     // MARK: - Setup View Functions
@@ -98,10 +109,31 @@ class RepoDetailsViewController: UIViewController {
         safeArea = view.layoutMarginsGuide
     }
     
-    private func setupRepoImage() {
+    private func setupViewContent() {
+        guard let repo = viewModel.getRepository() else { return }
+        
         if let imageURL = viewModel.getRepositoryImagePath() {
-            repoImageView.kf.setImage(with: imageURL)
+            setupRepoImage(imageURL: imageURL)
         }
+        
+        if let description = repo.itemDescription {
+            repoDescriptionLabel.isHidden = false
+            setupRepoDescription(description: description)
+        } else {
+            repoDescriptionLabel.isHidden = true
+        }
+    }
+    
+    private func setupRepoImage(imageURL: URL) {
+        repoImageView.kf.setImage(with: imageURL)
+    }
+    
+    private func setupRepoDescription(description: String) {
+        repoDescriptionLabel.text = description
+    }
+    
+    @objc func onRepoLinkButtonPressed() {
+        viewModel.openRepositoryLink()
     }
     
     // MARK: - Private Setup Layout
@@ -111,6 +143,7 @@ class RepoDetailsViewController: UIViewController {
         setupRepoDescriptionLayout()
         setupRepoInfoStackLayout()
         setupRepoInfoStackElementsLayout()
+        setupRepoLinkButtonLayout()
     }
     
     private func setupRepoImageLayout() {
@@ -129,8 +162,9 @@ class RepoDetailsViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             repoDescriptionLabel.topAnchor.constraint(equalTo: repoImageView.bottomAnchor, constant: 23),
-            repoDescriptionLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 21),
-            repoDescriptionLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -24),
+            repoDescriptionLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 12),
+            repoDescriptionLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -12),
+            repoDescriptionLabel.heightAnchor.constraint(lessThanOrEqualToConstant: 100)
         ])
     }
     
@@ -139,8 +173,8 @@ class RepoDetailsViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             repoInfoStackView.topAnchor.constraint(equalTo: repoDescriptionLabel.bottomAnchor, constant: 22),
-            repoInfoStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 15),
-            repoInfoStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -15)
+            repoInfoStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 12),
+            repoInfoStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -12)
         ])
     }
     
@@ -172,6 +206,17 @@ class RepoDetailsViewController: UIViewController {
             repoLicense.leadingAnchor.constraint(equalTo: repoInfoStackView.leadingAnchor),
             repoLicense.trailingAnchor.constraint(equalTo: repoInfoStackView.trailingAnchor),
             repoLicense.heightAnchor.constraint(greaterThanOrEqualToConstant: 36)
+        ])
+    }
+    
+    private func setupRepoLinkButtonLayout() {
+        view.addSubview(repoLinkButton)
+        
+        NSLayoutConstraint.activate([
+            repoLinkButton.topAnchor.constraint(equalTo: repoInfoStackView.bottomAnchor, constant: 16),
+            repoLinkButton.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            repoLinkButton.heightAnchor.constraint(equalToConstant: 30),
+            repoLinkButton.widthAnchor.constraint(equalToConstant: 160)
         ])
     }
     

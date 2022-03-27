@@ -18,6 +18,7 @@ class InfoComponent: UIView {
     lazy var infoImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentMode = .scaleAspectFit
         return image
     }()
     
@@ -28,6 +29,7 @@ class InfoComponent: UIView {
         label.dataDetectorTypes = UIDataDetectorTypes.link
         label.attributedText = NSMutableAttributedString(string: "Teste de Label")
         label.textColor = .black
+        label.textAlignment = .center
         return label
     }()
     
@@ -46,9 +48,9 @@ class InfoComponent: UIView {
     
     private func setupInfoText(title: String, description: String, link: String?) {
         
-        let titleAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .bold), NSAttributedString.Key.foregroundColor: UIColor.black]
+        let titleAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15), NSAttributedString.Key.foregroundColor: UIColor.black]
         
-        let descriptionAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.black]
+        let descriptionAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.black]
         
         infoText = NSMutableAttributedString(string: title + ": " + description)
         

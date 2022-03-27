@@ -11,24 +11,29 @@ import UIKit
 class RepoDetailsViewModel {
     
     private var repository: Repository?
+    private var repositoryURL: URL? = nil
     
     func setRepository(repo: Repository) {
         repository = repo
+        
+        if let url = URL(string: repo.htmlURL) {
+            repositoryURL = url
+        } else {
+            repositoryURL = nil
+        }
     }
     
     func getRepository() -> Repository? {
         return repository
     }
     
+    func hasValidURL() -> Bool {
+        return repositoryURL != nil
+    }
+    
     func openRepositoryLink() {
-        if let repository = repository {
-            let url = URL(string: repository.htmlURL)
-            
-            if let url = url, UIApplication.shared.canOpenURL(url) {
-                
-                UIApplication.shared.open(url)
-                
-            }
+        if let url = repositoryURL, UIApplication.shared.canOpenURL(url) == true {
+            UIApplication.shared.open(url)
         }
     }
     
