@@ -1,8 +1,7 @@
 //
-//  CallsTableView.swift
-//  godev_whatsapp_homework
+//  CellTableViewTableViewCell.swift
 //
-//  Created by Victor Pizetta on 25/03/22.
+//
 //
 
 import UIKit
