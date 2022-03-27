@@ -252,7 +252,7 @@ class RepoDetailsViewController: UIViewController {
             title: "Data de Criação",
             description: (viewModel.getRepositoryCreatedAt() ?? "00/00/0000"),
             icon: UIImage(systemName: "deskclock")!,
-            descriptionLink: "https://google.com")
+            descriptionLink: nil)
     }
     
     private func setupLicenseComponent() {
