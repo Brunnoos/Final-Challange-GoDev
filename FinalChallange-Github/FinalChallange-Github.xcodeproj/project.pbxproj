@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		04E08294F8D5F87444F4E7B3 /* libPods-FinalChallange-Github.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3465B938A794067615710D /* libPods-FinalChallange-Github.a */; };
-		2A45146927F0E17F00A83E2D /* CellTableViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A45146827F0E17F00A83E2D /* CellTableViewTableViewCell.swift */; };
 		2A45146D27F0E2D400A83E2D /* TeamMemberDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A45146C27F0E2D400A83E2D /* TeamMemberDescriptionVC.swift */; };
 		2A45146F27F0E3A700A83E2D /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A45146E27F0E3A700A83E2D /* Person.swift */; };
-		2A45147127F0E3EB00A83E2D /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A45147027F0E3EB00A83E2D /* CustomTableView.swift */; };
 		2A45147427F0E45800A83E2D /* ViewCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A45147327F0E45800A83E2D /* ViewCodable.swift */; };
+		9955038C27F0F68100FA4BAE /* CellTableViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9955038B27F0F68100FA4BAE /* CellTableViewTableViewCell.swift */; };
+		9955038E27F0F69000FA4BAE /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9955038D27F0F69000FA4BAE /* CustomTableView.swift */; };
 		99FC214627EF9CB40062820F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC214527EF9CB40062820F /* AppDelegate.swift */; };
 		99FC214827EF9CB40062820F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC214727EF9CB40062820F /* SceneDelegate.swift */; };
 		99FC214A27EF9CB40062820F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC214927EF9CB40062820F /* SearchViewController.swift */; };
@@ -27,13 +27,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		48771F74D287CB5133D665B3 /* Pods-FinalChallange-Github.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalChallange-Github.release.xcconfig"; path = "Target Support Files/Pods-FinalChallange-Github/Pods-FinalChallange-Github.release.xcconfig"; sourceTree = "<group>"; };
-		8B3465B938A794067615710D /* libPods-FinalChallange-Github.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FinalChallange-Github.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A45146827F0E17F00A83E2D /* CellTableViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTableViewTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		2A45146C27F0E2D400A83E2D /* TeamMemberDescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberDescriptionVC.swift; sourceTree = "<group>"; };
 		2A45146E27F0E3A700A83E2D /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Person.swift; path = "FinalChallange-Github/Controllers/Person.swift"; sourceTree = SOURCE_ROOT; };
-		2A45147027F0E3EB00A83E2D /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTableView.swift; path = "FinalChallange-Github/Controllers/CustomTableView.swift"; sourceTree = SOURCE_ROOT; };
 		2A45147327F0E45800A83E2D /* ViewCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodable.swift; sourceTree = "<group>"; };
+		48771F74D287CB5133D665B3 /* Pods-FinalChallange-Github.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalChallange-Github.release.xcconfig"; path = "Target Support Files/Pods-FinalChallange-Github/Pods-FinalChallange-Github.release.xcconfig"; sourceTree = "<group>"; };
+		8B3465B938A794067615710D /* libPods-FinalChallange-Github.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FinalChallange-Github.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9955038B27F0F68100FA4BAE /* CellTableViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellTableViewTableViewCell.swift; sourceTree = "<group>"; };
+		9955038D27F0F69000FA4BAE /* CustomTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
 		99FC214227EF9CB40062820F /* FinalChallange-Github.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FinalChallange-Github.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		99FC214527EF9CB40062820F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99FC214727EF9CB40062820F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,8 +113,8 @@
 		99FC216D27EFA6120062820F /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				2A45146827F0E17F00A83E2D /* CellTableViewTableViewCell.swift */,
-				2A45147027F0E3EB00A83E2D /* CustomTableView.swift */,
+				9955038D27F0F69000FA4BAE /* CustomTableView.swift */,
+				9955038B27F0F68100FA4BAE /* CellTableViewTableViewCell.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -270,14 +270,14 @@
 				99FC215027EF9CB40062820F /* FinalChallange_Github.xcdatamodeld in Sources */,
 				2A45146D27F0E2D400A83E2D /* TeamMemberDescriptionVC.swift in Sources */,
 				2A45147427F0E45800A83E2D /* ViewCodable.swift in Sources */,
-				2A45146927F0E17F00A83E2D /* CellTableViewTableViewCell.swift in Sources */,
 				99FC215D27EFA1E90062820F /* MainTabBarController.swift in Sources */,
 				99FC214627EF9CB40062820F /* AppDelegate.swift in Sources */,
 				99FC215F27EFA33A0062820F /* FavoritesViewController.swift in Sources */,
 				99FC217827EFB3860062820F /* RepositorySearchResponse.swift in Sources */,
-				2A45147127F0E3EB00A83E2D /* CustomTableView.swift in Sources */,
 				99FC214827EF9CB40062820F /* SceneDelegate.swift in Sources */,
+				9955038C27F0F68100FA4BAE /* CellTableViewTableViewCell.swift in Sources */,
 				99FC217327EFAE9E0062820F /* SearchAPI.swift in Sources */,
+				9955038E27F0F69000FA4BAE /* CustomTableView.swift in Sources */,
 				99FC216127EFA34A0062820F /* TeamViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
