@@ -9,27 +9,10 @@ import UIKit
 
 class TeamViewController: UIViewController {
 
-    let tableView = CellTableViewTableViewCell()
-    
-    override func loadView() {
-        super.view = self.tableView
-        delegates()
-    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-    
-    func delegates() {
-        tableView.tableView.delegate = self
-    }
-}
-
-extension TeamViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(TeamMemberDescriptionVC(), animated: true)
+        // Do any additional setup after loading the view.
     }
     
 
