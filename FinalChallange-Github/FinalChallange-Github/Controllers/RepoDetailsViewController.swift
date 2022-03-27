@@ -112,6 +112,8 @@ class RepoDetailsViewController: UIViewController {
     private func setupViewContent() {
         guard let repo = viewModel.getRepository() else { return }
         
+        title = repo.name
+        
         if let imageURL = viewModel.getRepositoryImagePath() {
             setupRepoImage(imageURL: imageURL)
         }

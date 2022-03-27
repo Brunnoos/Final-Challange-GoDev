@@ -39,12 +39,18 @@ class RepoDetailsViewModel {
     
     func getRepositoryCreatedAt() -> String? {
         if let repository = repository {
-            let dateFormatter = DateFormatter()
             
-            guard let date = dateFormatter.date(from: repository.createdAt) else { return nil }
+            let dateFiltered = repository.createdAt.filter { $0 != "Z"}
             
-            dateFormatter.dateFormat = "dd/MM/YYYY"
-            let dateString = dateFormatter.string(from: date)
+            let dateFormatterGet = DateFormatter()
+            dateFormatterGet.dateFormat = "YYYY-MM-DDTHH:MM:SS"
+
+            let dateFormatterPrint = DateFormatter()
+            dateFormatterPrint.dateFormat = "dd/MM/yyyy"
+
+            let date: NSDate? = dateFormatterGet.date(from: dateFiltered) as NSDate?
+            
+            let dateString = dateFormatterPrint.string(from: (date! as Date))
             
             return dateString
         }

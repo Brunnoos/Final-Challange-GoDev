@@ -21,6 +21,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        // REMOVE THIS AFTER THIS SCREENN IS UPDATED
         SearchAPI.shared.searchLanguage(searchParams: SearchParameters(language: "swift")) { response in
             
             switch response {
