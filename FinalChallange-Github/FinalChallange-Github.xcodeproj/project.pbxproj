@@ -7,11 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A45146927F0E17F00A83E2D /* CellTableViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A45146827F0E17F00A83E2D /* CellTableViewTableViewCell.swift */; };
-		2A45146D27F0E2D400A83E2D /* TeamMemberDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A45146C27F0E2D400A83E2D /* TeamMemberDescriptionVC.swift */; };
-		2A45146F27F0E3A700A83E2D /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A45146E27F0E3A700A83E2D /* Person.swift */; };
-		2A45147127F0E3EB00A83E2D /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A45147027F0E3EB00A83E2D /* CustomTableView.swift */; };
-		2A45147427F0E45800A83E2D /* ViewCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A45147327F0E45800A83E2D /* ViewCodable.swift */; };
 		99FC214627EF9CB40062820F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC214527EF9CB40062820F /* AppDelegate.swift */; };
 		99FC214827EF9CB40062820F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC214727EF9CB40062820F /* SceneDelegate.swift */; };
 		99FC214A27EF9CB40062820F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC214927EF9CB40062820F /* SearchViewController.swift */; };
@@ -24,11 +19,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2A45146827F0E17F00A83E2D /* CellTableViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTableViewTableViewCell.swift; sourceTree = SOURCE_ROOT; };
-		2A45146C27F0E2D400A83E2D /* TeamMemberDescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberDescriptionVC.swift; sourceTree = "<group>"; };
-		2A45146E27F0E3A700A83E2D /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Person.swift; path = "FinalChallange-Github/Controllers/Person.swift"; sourceTree = SOURCE_ROOT; };
-		2A45147027F0E3EB00A83E2D /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTableView.swift; path = "FinalChallange-Github/Controllers/CustomTableView.swift"; sourceTree = SOURCE_ROOT; };
-		2A45147327F0E45800A83E2D /* ViewCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodable.swift; sourceTree = "<group>"; };
 		99FC214227EF9CB40062820F /* FinalChallange-Github.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FinalChallange-Github.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		99FC214527EF9CB40062820F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99FC214727EF9CB40062820F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,7 +83,6 @@
 				99FC216027EFA34A0062820F /* TeamViewController.swift */,
 				99FC215E27EFA33A0062820F /* FavoritesViewController.swift */,
 				99FC215C27EFA1E90062820F /* MainTabBarController.swift */,
-				2A45146C27F0E2D400A83E2D /* TeamMemberDescriptionVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -101,8 +90,6 @@
 		99FC216D27EFA6120062820F /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				2A45146827F0E17F00A83E2D /* CellTableViewTableViewCell.swift */,
-				2A45147027F0E3EB00A83E2D /* CustomTableView.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -110,7 +97,6 @@
 		99FC216E27EFA6230062820F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2A45147327F0E45800A83E2D /* ViewCodable.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -126,7 +112,6 @@
 		99FC217027EFA6720062820F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2A45146E27F0E3A700A83E2D /* Person.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -201,16 +186,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A45146F27F0E3A700A83E2D /* Person.swift in Sources */,
 				99FC214A27EF9CB40062820F /* SearchViewController.swift in Sources */,
 				99FC215027EF9CB40062820F /* FinalChallange_Github.xcdatamodeld in Sources */,
-				2A45146D27F0E2D400A83E2D /* TeamMemberDescriptionVC.swift in Sources */,
-				2A45147427F0E45800A83E2D /* ViewCodable.swift in Sources */,
-				2A45146927F0E17F00A83E2D /* CellTableViewTableViewCell.swift in Sources */,
 				99FC215D27EFA1E90062820F /* MainTabBarController.swift in Sources */,
 				99FC214627EF9CB40062820F /* AppDelegate.swift in Sources */,
 				99FC215F27EFA33A0062820F /* FavoritesViewController.swift in Sources */,
-				2A45147127F0E3EB00A83E2D /* CustomTableView.swift in Sources */,
 				99FC214827EF9CB40062820F /* SceneDelegate.swift in Sources */,
 				99FC216127EFA34A0062820F /* TeamViewController.swift in Sources */,
 			);
