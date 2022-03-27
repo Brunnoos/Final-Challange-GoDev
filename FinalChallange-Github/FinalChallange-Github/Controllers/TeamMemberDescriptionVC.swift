@@ -17,29 +17,11 @@ class TeamMemberDescriptionVC: UIViewController {
         
     }
     
-//    override func viewDidLoad() {
-//        view.backgroundColor = .green
-//    }
-    
-    let tableView = CellTableViewTableViewCell()
-    
-    override func loadView() {
-        super.view = self.tableView
-        delegates()
+    override func viewDidLoad() {
+        view.backgroundColor = .green
     }
+    
 
-    
-    func delegates() {
-        tableView.tableView.delegate = self
-    }
-}
-
-extension TeamMemberDescriptionVC: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
-    }
-    
 
 
 }
