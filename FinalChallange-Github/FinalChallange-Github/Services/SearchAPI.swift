@@ -36,30 +36,30 @@ class SearchAPI {
     
     // MARK: - Search Functions
     
-    func searchLanguage(searchParams: SearchParameters) -> RepositorySearchResponse? {
+    func searchLanguage(searchParams: SearchParameters, onCompletion: @escaping (Result<RepositorySearchResponse, AFError>) -> Void) {
         
-        var result: RepositorySearchResponse?
+        let language = searchParams.language.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
-        guard let language = searchParams.language.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return nil }
-        
-        var queryString = "?q=stars:%3E=\(searchParams.minStars)+language:\(language)"
-        
-        queryString += "&sort=stars"
-        queryString += "&order=" + searchParams.order.rawValue
-        
-        if let resultsPerPage = searchParams.resultsPerPage {
-            queryString += "&per_page=\(resultsPerPage)"
+        if let language = language {
+            var queryString = "?q=stars:%3E=\(searchParams.minStars)+language:\(language)"
+            
+            queryString += "&sort=stars"
+            queryString += "&order=" + searchParams.order.rawValue
+            
+            if let resultsPerPage = searchParams.resultsPerPage {
+                queryString += "&per_page=\(resultsPerPage)"
+            }
+            
+            if let resultPage = searchParams.resultPage {
+                queryString += "&page=\(resultPage)"
+            }
+            
+            AF.request(apiURL + queryString).responseDecodable(of: RepositorySearchResponse.self) { response in                
+                onCompletion(response.result)
+            }
         }
-        
-        if let resultPage = searchParams.resultPage {
-            queryString += "&page=\(resultPage)"
+        else {
+            onCompletion(.failure(AFError.explicitlyCancelled))
         }
-        
-        AF.request(apiURL + queryString).responseDecodable(of: RepositorySearchResponse.self) { response in
-            print (response.value ?? "Vazio")
-            result = response.value
-        }
-        
-        return result
     }
 }

@@ -10,17 +10,17 @@ import Foundation
 struct RepositorySearchResponse: Decodable {
     let totalCount: Int
     let incompleteResults: Bool
-    let items: [Item]
+    let repositories: [Repository]
 
     enum CodingKeys: String, CodingKey {
         case totalCount = "total_count"
         case incompleteResults = "incomplete_results"
-        case items
+        case repositories = "items"
     }
 }
 
 // MARK: - Item
-struct Item: Decodable {
+struct Repository: Decodable {
     let id: Int
     let nodeID, name, fullName: String
     let itemPrivate: Bool
@@ -28,6 +28,8 @@ struct Item: Decodable {
     let htmlURL: String
     let itemDescription: String?
     let createdAt: String
+    let watchers: Int
+    let license: License?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -39,6 +41,8 @@ struct Item: Decodable {
         case htmlURL = "html_url"
         case itemDescription = "description"
         case createdAt = "created_at"
+        case watchers = "watchers_count"
+        case license = "license"
     }
 }
 
