@@ -11,7 +11,7 @@ protocol action {
     
 }
 
-class CustomTableView: UITableViewCell {
+class TeamMemberTableViewCell: UITableViewCell {
     
     //MARK: - Components
     
@@ -73,7 +73,7 @@ class CustomTableView: UITableViewCell {
     }
 }
 
-extension CustomTableView: ViewCodable {
+extension TeamMemberTableViewCell: ViewCodable {
     
     func buildHierarchy() {
         addSubview(personImage)
