@@ -16,6 +16,13 @@ class TeamViewController: UIViewController {
         delegates()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let lastRow = tableView.tableView.indexPathForSelectedRow {
+            tableView.tableView.deselectRow(at: lastRow, animated: false)
+        }
+    }
     
     func delegates() {
         tableView.tableView.delegate = self

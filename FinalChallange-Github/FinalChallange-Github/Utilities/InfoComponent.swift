@@ -22,15 +22,12 @@ class InfoComponent: UIView {
         return image
     }()
     
-    lazy var infoTextView: UITextView = {
-        let label = UITextView()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.isEditable = false
-        label.dataDetectorTypes = UIDataDetectorTypes.link
-        label.attributedText = NSMutableAttributedString(string: "Teste de Label")
-        label.textColor = .black
-        label.textAlignment = .center
-        return label
+    lazy var infoTextView: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setAttributedTitle(NSMutableAttributedString(string: "Teste de Label"), for: .disabled)
+        button.contentHorizontalAlignment = .leading
+        return button
     }()
     
     // MARK: - Setup Component Functions
@@ -70,7 +67,7 @@ class InfoComponent: UIView {
                 }
             }
             
-            infoTextView.attributedText = infoText
+            infoTextView.setAttributedTitle(infoText, for: .normal)
         }
     }
     

@@ -10,7 +10,7 @@ class TeamMembersTableView: UIView {
         
     var devs: [Person] = [
         .init(name: "Amaryllis Baldrez", ocupation: "iOS Developer", image: "person2", description: "Sem descrição", phoneNumber: "(99) 999999999", email: "email@email.com", linkedinURL: "https://linkedin.com"),
-        .init(name: "Bruno Oliveira", ocupation: "iOS Developer", image: "bruno", description: "Sem descrição", phoneNumber: "(99) 999999999", email: "brunno.os159@gmail.com", linkedinURL: "https://linkedin.com"),
+        .init(name: "Bruno Oliveira", ocupation: "iOS Developer", image: "bruno", description: "Sem descrição", phoneNumber: "(99) 999999999", email: "brunno.os159@gmail.com", linkedinURL: "brunoos159", twitterURL: "togante159"),
         .init(name: "Rayanne Andrade", ocupation: "Android/IOS Developer", image: "ray", description: "Sem descrição", phoneNumber: "(99) 999999999", email: "email@email.com", linkedinURL: "https://linkedin.com")
     ]
     

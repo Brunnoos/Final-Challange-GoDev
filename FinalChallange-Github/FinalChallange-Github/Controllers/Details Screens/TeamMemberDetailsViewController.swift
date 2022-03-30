@@ -23,6 +23,8 @@ class TeamMemberDetailsViewController: UIViewController {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 75
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -127,7 +129,7 @@ class TeamMemberDetailsViewController: UIViewController {
         NSLayoutConstraint.activate([
             personImageView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 20),
             personImageView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            personImageView.widthAnchor.constraint(equalToConstant: 200),
+            personImageView.widthAnchor.constraint(equalToConstant: 150),
             personImageView.heightAnchor.constraint(equalToConstant: 150)
         ])
     }
@@ -201,6 +203,8 @@ class TeamMemberDetailsViewController: UIViewController {
                 description: person.phoneNumber,
                 icon: UIImage(systemName: "phone")!,
                 descriptionLink: "tel://\(person.phoneNumber)")
+            
+            personPhoneNumber.infoTextView.addTarget(self, action: #selector(openPhoneNumber), for: .touchUpInside)
         } else {
             personPhoneNumber.isHidden = true
         }
@@ -215,6 +219,8 @@ class TeamMemberDetailsViewController: UIViewController {
                 description: person.email,
                 icon: UIImage(systemName: "envelope")!,
                 descriptionLink: "mailto:\(person.email)")
+            
+            personEmail.infoTextView.addTarget(self, action: #selector(openEmail), for: .touchUpInside)
         }
         else {
             personEmail.isHidden = true
@@ -226,9 +232,11 @@ class TeamMemberDetailsViewController: UIViewController {
             personLinkedin.isHidden = false
             personLinkedin.setupComponent(
                 title: "Linkedin",
-                description: "Abrir no navegador",
+                description: person.linkedinURL,
                 icon: UIImage(systemName: "network")!,
                 descriptionLink: person.linkedinURL)
+            
+            personLinkedin.infoTextView.addTarget(self, action: #selector(openLinkedin), for: .touchUpInside)
         } else {
             personLinkedin.isHidden = true
         }
@@ -239,9 +247,11 @@ class TeamMemberDetailsViewController: UIViewController {
             personTwitter.isHidden = false
             personTwitter.setupComponent(
                 title: "Twitter",
-                description: person.email,
+                description: "@" + twitterURL,
                 icon: UIImage(systemName: "network")!,
                 descriptionLink: "twitter://user?screen_name=\(twitterURL)")
+            
+            personTwitter.infoTextView.addTarget(self, action: #selector(openTwitter), for: .touchUpInside)
         } else {
             personTwitter.isHidden = true
             
@@ -249,6 +259,44 @@ class TeamMemberDetailsViewController: UIViewController {
     }
 }
 
+// MARK: - Open URL Actions
+
 extension TeamMemberDetailsViewController: MFMailComposeViewControllerDelegate {
+    
+    @objc private func openPhoneNumber() {
+        if let person = self.person {
+            guard let url = URL(string: "tel://\(person.phoneNumber)") else { return }
+            
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            }
+        }
+    }
+    
+    @objc private func openEmail() {
+        if let person = self.person {
+            let mailController = MFMailComposeViewController()
+            
+            mailController.setToRecipients([person.email])
+            
+            if MFMailComposeViewController.canSendMail() {
+                present(mailController, animated: true)
+            }
+        }
+    }
+    
+    @objc private func openLinkedin() {
+        if let person = self.person {
+            guard let url = URL(string: "https://linkedin.com/in/\(person.linkedinURL)") else { return }
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    @objc private func openTwitter() {
+        if let person = self.person, let twitterUser = person.twitterURL {
+            guard let url = URL(string: "https://twitter.com/\(twitterUser)") else { return }
+            UIApplication.shared.open(url)
+        }
+    }
     
 }

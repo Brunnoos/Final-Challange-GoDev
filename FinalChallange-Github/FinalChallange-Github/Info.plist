@@ -9,6 +9,10 @@
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
 			<string>com.cursoID.FinalChallange-Github</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>twitter</string>
+			</array>
 		</dict>
 	</array>
 	<key>UIApplicationSceneManifest</key>
