@@ -7,15 +7,15 @@
 
 import UIKit
 
-class Person {
+struct Person {
     
     var name: String
-    var description: String
+    var ocupation: String
     var image: String
+    var description: String
+    var phoneNumber: String
+    var email: String
+    var linkedinURL: String
+    var twitterURL: String?
     
-    init(name: String, description: String, image: String) {
-        self.name = name
-        self.description = description
-        self.image = image
-    }
 }
