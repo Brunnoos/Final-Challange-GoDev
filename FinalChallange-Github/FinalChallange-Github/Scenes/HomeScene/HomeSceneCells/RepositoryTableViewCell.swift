@@ -36,6 +36,8 @@ class RepositoryTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 3
         label.font = UIFont.systemFont(ofSize: 14)
+        label.sizeToFit()
+        label.textAlignment = .left
         return label
     }()
     
@@ -119,10 +121,9 @@ class RepositoryTableViewCell: UITableViewCell {
         addSubview(repoDescriptionLabel)
         
         NSLayoutConstraint.activate([
-            repoDescriptionLabel.topAnchor.constraint(equalTo: repoNameLabel.bottomAnchor),
+            repoDescriptionLabel.topAnchor.constraint(equalTo: repoNameLabel.bottomAnchor, constant: 4),
             repoDescriptionLabel.leadingAnchor.constraint(equalTo: repoNameLabel.leadingAnchor),
-            repoDescriptionLabel.trailingAnchor.constraint(equalTo: repoNameLabel.trailingAnchor),
-            repoDescriptionLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            repoDescriptionLabel.trailingAnchor.constraint(equalTo: repoNameLabel.trailingAnchor)
         ])
     }
     

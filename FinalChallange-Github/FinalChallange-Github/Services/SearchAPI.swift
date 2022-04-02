@@ -16,7 +16,7 @@ enum SearchOrder: String {
 struct SearchParameters {
     var language: String
     var order = SearchOrder.descendent
-    var minStars: Int = 10000
+    var minStars: Int = 100
     var resultsPerPage: Int? = nil
     var resultPage: Int? = nil
 }
@@ -41,7 +41,7 @@ class SearchAPI {
         let language = searchParams.language.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         if let language = language {
-            var queryString = "?q=stars:%3E=\(searchParams.minStars)+language:\(language)"
+            var queryString = "?q=+language:\(language)"
             
             queryString += "&sort=stars"
             queryString += "&order=" + searchParams.order.rawValue
