@@ -5,6 +5,11 @@
 //  Created by Aloc FL00030 on 27/03/22.
 //
 
+// A Custom Component that presents a simple image, a Title and a Description in one line
+// Its description text can contain a custom link
+
+// Used on Repository Details and Team Member Details scenes
+
 import UIKit
 
 class InfoComponent: UIView {
@@ -33,12 +38,10 @@ class InfoComponent: UIView {
     // MARK: - Setup Component Functions
     
     func setupComponent(title: String, description: String, icon: UIImage, descriptionLink: String?) {
-        
         setupInfoLayout()
         
         setupInfoImage(image: icon)
         setupInfoText(title: title, description: description, link: descriptionLink)
-        
     }
     
     // MARK: - Setup Text Functions

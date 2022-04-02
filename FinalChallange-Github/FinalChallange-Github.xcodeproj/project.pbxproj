@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		04E08294F8D5F87444F4E7B3 /* libPods-FinalChallange-Github.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3465B938A794067615710D /* libPods-FinalChallange-Github.a */; };
 		2A45146D27F0E2D400A83E2D /* TeamMemberDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A45146C27F0E2D400A83E2D /* TeamMemberDetailsViewController.swift */; };
-		2A45146F27F0E3A700A83E2D /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A45146E27F0E3A700A83E2D /* Person.swift */; };
 		2A45147427F0E45800A83E2D /* ViewCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A45147327F0E45800A83E2D /* ViewCodable.swift */; };
 		991AC98827F08FBB00C4F0CF /* RepoDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991AC98727F08FBB00C4F0CF /* RepoDetailsViewController.swift */; };
 		991AC98A27F0904100C4F0CF /* RepoDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991AC98927F0904100C4F0CF /* RepoDetailsViewModel.swift */; };
 		991AC98D27F0935200C4F0CF /* InfoComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991AC98C27F0935200C4F0CF /* InfoComponent.swift */; };
 		9955038C27F0F68100FA4BAE /* TeamMembersTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9955038B27F0F68100FA4BAE /* TeamMembersTableView.swift */; };
 		9955038E27F0F69000FA4BAE /* TeamMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9955038D27F0F69000FA4BAE /* TeamMemberTableViewCell.swift */; };
+		9993F07B27F7A88C00AE5DBB /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9993F07A27F7A88C00AE5DBB /* SearchViewModel.swift */; };
+		9993F07D27F7A90A00AE5DBB /* RepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9993F07C27F7A90A00AE5DBB /* RepositoryTableViewCell.swift */; };
+		99E9538D27F8C76E001C4B4E /* TeamMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E9538C27F8C76E001C4B4E /* TeamMember.swift */; };
+		99E9538F27F8CAC6001C4B4E /* SearchServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E9538E27F8CAC6001C4B4E /* SearchServiceDelegate.swift */; };
+		99E9539127F8E263001C4B4E /* LoadMoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E9539027F8E263001C4B4E /* LoadMoreTableViewCell.swift */; };
 		99FC214627EF9CB40062820F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC214527EF9CB40062820F /* AppDelegate.swift */; };
 		99FC214827EF9CB40062820F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC214727EF9CB40062820F /* SceneDelegate.swift */; };
 		99FC214A27EF9CB40062820F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC214927EF9CB40062820F /* SearchViewController.swift */; };
@@ -31,7 +35,6 @@
 
 /* Begin PBXFileReference section */
 		2A45146C27F0E2D400A83E2D /* TeamMemberDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberDetailsViewController.swift; sourceTree = "<group>"; };
-		2A45146E27F0E3A700A83E2D /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Person.swift; path = "FinalChallange-Github/Controllers/Person.swift"; sourceTree = SOURCE_ROOT; };
 		2A45147327F0E45800A83E2D /* ViewCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodable.swift; sourceTree = "<group>"; };
 		48771F74D287CB5133D665B3 /* Pods-FinalChallange-Github.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalChallange-Github.release.xcconfig"; path = "Target Support Files/Pods-FinalChallange-Github/Pods-FinalChallange-Github.release.xcconfig"; sourceTree = "<group>"; };
 		8B3465B938A794067615710D /* libPods-FinalChallange-Github.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FinalChallange-Github.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +43,11 @@
 		991AC98C27F0935200C4F0CF /* InfoComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoComponent.swift; sourceTree = "<group>"; };
 		9955038B27F0F68100FA4BAE /* TeamMembersTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMembersTableView.swift; sourceTree = "<group>"; };
 		9955038D27F0F69000FA4BAE /* TeamMemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMemberTableViewCell.swift; sourceTree = "<group>"; };
+		9993F07A27F7A88C00AE5DBB /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		9993F07C27F7A90A00AE5DBB /* RepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTableViewCell.swift; sourceTree = "<group>"; };
+		99E9538C27F8C76E001C4B4E /* TeamMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMember.swift; sourceTree = "<group>"; };
+		99E9538E27F8CAC6001C4B4E /* SearchServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceDelegate.swift; sourceTree = "<group>"; };
+		99E9539027F8E263001C4B4E /* LoadMoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreTableViewCell.swift; sourceTree = "<group>"; };
 		99FC214227EF9CB40062820F /* FinalChallange-Github.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FinalChallange-Github.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		99FC214527EF9CB40062820F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99FC214727EF9CB40062820F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,32 +76,82 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		991AC98B27F0930D00C4F0CF /* Utilities */ = {
+		991AC98B27F0930D00C4F0CF /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				991AC98C27F0935200C4F0CF /* InfoComponent.swift */,
 			);
-			path = Utilities;
+			path = Components;
 			sourceTree = "<group>";
 		};
-		99F21EA127F47AEE00F00B7A /* Main Screens */ = {
+		9993F07927F7A85B00AE5DBB /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				99FC215C27EFA1E90062820F /* MainTabBarController.swift */,
-				99FC216027EFA34A0062820F /* TeamViewController.swift */,
-				99FC215E27EFA33A0062820F /* FavoritesViewController.swift */,
-				99FC214927EF9CB40062820F /* SearchViewController.swift */,
+				99FC214527EF9CB40062820F /* AppDelegate.swift */,
+				99FC214727EF9CB40062820F /* SceneDelegate.swift */,
 			);
-			path = "Main Screens";
+			path = Application;
 			sourceTree = "<group>";
 		};
-		99F21EA227F47B0300F00B7A /* Details Screens */ = {
+		99E9538627F8C5D0001C4B4E /* FavoritesScene */ = {
+			isa = PBXGroup;
+			children = (
+				99FC215E27EFA33A0062820F /* FavoritesViewController.swift */,
+			);
+			path = FavoritesScene;
+			sourceTree = "<group>";
+		};
+		99E9538727F8C5E0001C4B4E /* TeamMembersScene */ = {
+			isa = PBXGroup;
+			children = (
+				99E9538B27F8C644001C4B4E /* TeamMembersSceneCells */,
+				99FC216027EFA34A0062820F /* TeamViewController.swift */,
+				9955038B27F0F68100FA4BAE /* TeamMembersTableView.swift */,
+			);
+			path = TeamMembersScene;
+			sourceTree = "<group>";
+		};
+		99E9538827F8C5EB001C4B4E /* TeamMemberDetailsScene */ = {
+			isa = PBXGroup;
+			children = (
+				2A45146C27F0E2D400A83E2D /* TeamMemberDetailsViewController.swift */,
+			);
+			path = TeamMemberDetailsScene;
+			sourceTree = "<group>";
+		};
+		99E9538927F8C5F4001C4B4E /* RepositoryDetailsScene */ = {
 			isa = PBXGroup;
 			children = (
 				991AC98727F08FBB00C4F0CF /* RepoDetailsViewController.swift */,
-				2A45146C27F0E2D400A83E2D /* TeamMemberDetailsViewController.swift */,
 			);
-			path = "Details Screens";
+			path = RepositoryDetailsScene;
+			sourceTree = "<group>";
+		};
+		99E9538A27F8C638001C4B4E /* HomeSceneCells */ = {
+			isa = PBXGroup;
+			children = (
+				9993F07C27F7A90A00AE5DBB /* RepositoryTableViewCell.swift */,
+				99E9539027F8E263001C4B4E /* LoadMoreTableViewCell.swift */,
+			);
+			path = HomeSceneCells;
+			sourceTree = "<group>";
+		};
+		99E9538B27F8C644001C4B4E /* TeamMembersSceneCells */ = {
+			isa = PBXGroup;
+			children = (
+				9955038D27F0F69000FA4BAE /* TeamMemberTableViewCell.swift */,
+			);
+			path = TeamMembersSceneCells;
+			sourceTree = "<group>";
+		};
+		99F21EA127F47AEE00F00B7A /* HomeScene */ = {
+			isa = PBXGroup;
+			children = (
+				99E9538A27F8C638001C4B4E /* HomeSceneCells */,
+				99FC215C27EFA1E90062820F /* MainTabBarController.swift */,
+				99FC214927EF9CB40062820F /* SearchViewController.swift */,
+			);
+			path = HomeScene;
 			sourceTree = "<group>";
 		};
 		99FC213927EF9CB40062820F = {
@@ -117,39 +175,40 @@
 		99FC214427EF9CB40062820F /* FinalChallange-Github */ = {
 			isa = PBXGroup;
 			children = (
-				99FC214527EF9CB40062820F /* AppDelegate.swift */,
-				99FC214727EF9CB40062820F /* SceneDelegate.swift */,
 				99FC215127EF9CB60062820F /* Assets.xcassets */,
 				99FC214E27EF9CB40062820F /* FinalChallange_Github.xcdatamodeld */,
 				99FC215627EF9CB60062820F /* Info.plist */,
+				9993F07927F7A85B00AE5DBB /* Application */,
 				99FC216F27EFA62F0062820F /* Storyboards */,
 				99FC216E27EFA6230062820F /* Resources */,
-				99FC216D27EFA6120062820F /* View Models */,
+				99FC216D27EFA6120062820F /* ViewModels */,
 				99FC217027EFA6720062820F /* Models */,
-				99FC216427EFA4D20062820F /* Controllers */,
-				991AC98B27F0930D00C4F0CF /* Utilities */,
+				99FC216427EFA4D20062820F /* Scenes */,
+				991AC98B27F0930D00C4F0CF /* Components */,
 				99FC217127EFAE630062820F /* Services */,
 			);
 			path = "FinalChallange-Github";
 			sourceTree = "<group>";
 		};
-		99FC216427EFA4D20062820F /* Controllers */ = {
+		99FC216427EFA4D20062820F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				99F21EA127F47AEE00F00B7A /* Main Screens */,
-				99F21EA227F47B0300F00B7A /* Details Screens */,
+				99F21EA127F47AEE00F00B7A /* HomeScene */,
+				99E9538627F8C5D0001C4B4E /* FavoritesScene */,
+				99E9538927F8C5F4001C4B4E /* RepositoryDetailsScene */,
+				99E9538727F8C5E0001C4B4E /* TeamMembersScene */,
+				99E9538827F8C5EB001C4B4E /* TeamMemberDetailsScene */,
 			);
-			path = Controllers;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
-		99FC216D27EFA6120062820F /* View Models */ = {
+		99FC216D27EFA6120062820F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				991AC98927F0904100C4F0CF /* RepoDetailsViewModel.swift */,
-				9955038D27F0F69000FA4BAE /* TeamMemberTableViewCell.swift */,
-				9955038B27F0F68100FA4BAE /* TeamMembersTableView.swift */,
+				9993F07A27F7A88C00AE5DBB /* SearchViewModel.swift */,
 			);
-			path = "View Models";
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		99FC216E27EFA6230062820F /* Resources */ = {
@@ -172,7 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				99FC217727EFB3860062820F /* RepositorySearchResponse.swift */,
-				2A45146E27F0E3A700A83E2D /* Person.swift */,
+				99E9538C27F8C76E001C4B4E /* TeamMember.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -181,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				99FC217227EFAE9E0062820F /* SearchAPI.swift */,
+				99E9538E27F8CAC6001C4B4E /* SearchServiceDelegate.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -298,7 +358,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A45146F27F0E3A700A83E2D /* Person.swift in Sources */,
+				9993F07B27F7A88C00AE5DBB /* SearchViewModel.swift in Sources */,
+				9993F07D27F7A90A00AE5DBB /* RepositoryTableViewCell.swift in Sources */,
 				99FC214A27EF9CB40062820F /* SearchViewController.swift in Sources */,
 				99FC215027EF9CB40062820F /* FinalChallange_Github.xcdatamodeld in Sources */,
 				2A45146D27F0E2D400A83E2D /* TeamMemberDetailsViewController.swift in Sources */,
@@ -309,12 +370,15 @@
 				99FC215F27EFA33A0062820F /* FavoritesViewController.swift in Sources */,
 				991AC98827F08FBB00C4F0CF /* RepoDetailsViewController.swift in Sources */,
 				99FC217827EFB3860062820F /* RepositorySearchResponse.swift in Sources */,
+				99E9539127F8E263001C4B4E /* LoadMoreTableViewCell.swift in Sources */,
 				99FC214827EF9CB40062820F /* SceneDelegate.swift in Sources */,
 				991AC98D27F0935200C4F0CF /* InfoComponent.swift in Sources */,
 				9955038C27F0F68100FA4BAE /* TeamMembersTableView.swift in Sources */,
 				99FC217327EFAE9E0062820F /* SearchAPI.swift in Sources */,
+				99E9538F27F8CAC6001C4B4E /* SearchServiceDelegate.swift in Sources */,
 				9955038E27F0F69000FA4BAE /* TeamMemberTableViewCell.swift in Sources */,
 				99FC216127EFA34A0062820F /* TeamViewController.swift in Sources */,
+				99E9538D27F8C76E001C4B4E /* TeamMember.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

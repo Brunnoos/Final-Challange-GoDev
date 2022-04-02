@@ -11,7 +11,7 @@ import MessageUI
 
 class TeamMemberDetailsViewController: UIViewController {
 
-    var person: Person?
+    var person: TeamMember?
     
     // MARK: - Private Properties
     
@@ -88,7 +88,7 @@ class TeamMemberDetailsViewController: UIViewController {
     
     // MARK: - Setup View Functions
     
-    func setTeamMember(person: Person) {
+    func setTeamMember(person: TeamMember) {
         self.person = person
     }
     
