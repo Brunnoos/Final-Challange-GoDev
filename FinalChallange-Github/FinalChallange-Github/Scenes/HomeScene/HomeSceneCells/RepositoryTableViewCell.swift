@@ -7,9 +7,12 @@
 
 import UIKit
 import Kingfisher
+import CoreData
+protocol RepositoryTableViewCellDelegate{func saveFavoriteRepo(indexPath: IndexPath)}
+
 
 class RepositoryTableViewCell: UITableViewCell {
-    
+    var delegate: RepositoryTableViewCellDelegate?
     // MARK: - Static Properties
     
     static let identifier = "RepositoryTableViewCell"
@@ -49,13 +52,14 @@ class RepositoryTableViewCell: UITableViewCell {
     
     // MARK: - Cell Setup
     
-    func setupCell(repository: Repository, isFavorite: Bool) {
+    func setupCell(repository: Repository, isFavorite: Bool, delegate: RepositoryTableViewCellDelegate) {
         setupLayouts()
+        self.delegate = delegate
         
         setupRepoName(name: repository.name)
         setupRepoImage(imageURL: repository.owner.avatarURL)
         setupRepoDescription(description: repository.itemDescription)
-        setupFavoriteButton(isFavorite: isFavorite)
+        setupFavoriteButton(isFavorite: isFavorite, repository: repository)
     }
     
     private func setupRepoName(name: String) {
@@ -78,9 +82,18 @@ class RepositoryTableViewCell: UITableViewCell {
         }
     }
     
-    private func setupFavoriteButton(isFavorite: Bool) {
+    @objc func checkFavoritePressedButton() {
+        guard let indexPath = self.indexPath else {return}
+        self.delegate?.saveFavoriteRepo(indexPath: indexPath)
+        repoFavoriteButton.setBackgroundImage(UIImage(systemName: "star.fill"), for: .normal)
+    }
+    
+    private func setupFavoriteButton(isFavorite: Bool, repository: Repository) {
+      
+        repoFavoriteButton.addTarget(self, action: #selector(checkFavoritePressedButton), for: .touchDown)
         if isFavorite {
             repoFavoriteButton.setBackgroundImage(UIImage(systemName: "star.fill"), for: .normal)
+            
         } else {
             repoFavoriteButton.setBackgroundImage(UIImage(systemName: "star"), for: .normal)
         }
@@ -138,4 +151,17 @@ class RepositoryTableViewCell: UITableViewCell {
         ])
     }
     
+    
+}
+
+extension UITableViewCell{
+
+    var tableView:UITableView?{
+        return superview as? UITableView
+    }
+
+    var indexPath:IndexPath?{
+        return tableView?.indexPath(for: self)
+    }
+
 }

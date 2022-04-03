@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SearchViewController: UIViewController {
 
@@ -33,6 +34,8 @@ class SearchViewController: UIViewController {
             }
         }
     }
+    
+    private var favoritesRepositories: [Repository] = []
     
     private var refreshControl = UIRefreshControl()
     
@@ -96,6 +99,15 @@ class SearchViewController: UIViewController {
         if let tableViewSelected = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: tableViewSelected, animated: true)
         }
+        
+     
+            do {try getRepo()} catch{fatalError()}
+            tableView.reloadData()
+        
+    }
+    
+    func getRepo() throws {
+        self.favoritesRepositories = try viewModel?.getFavorityRepositories() as! [Repository]
     }
     
     // MARK: - Navigation Controller Setup
@@ -144,6 +156,7 @@ class SearchViewController: UIViewController {
             onErrorState()
         }
     }
+    
     
     private func onLoadingState() {
         DispatchQueue.main.async {
@@ -281,7 +294,10 @@ extension SearchViewController: SearchServiceDelegate {
     func onSearchCompleted(isAdditional: Bool) {
         if let viewModel = viewModel {
             let foundRepositories = viewModel.getRepositories()
-            
+            do {let favoritesRepositories = try viewModel.getFavorityRepositories()
+                self.favoritesRepositories = favoritesRepositories!
+            } catch{fatalError()
+            }
             if let foundRepositories = foundRepositories {
                 
                 if isAdditional, var currentRepositories = self.repositories {
@@ -310,7 +326,56 @@ extension SearchViewController: SearchServiceDelegate {
 
 // MARK: - Table View Extension Methods
 
-extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource, RepositoryTableViewCellDelegate {
+    func saveFavoriteRepo(indexPath: IndexPath) {
+        guard let repositories = self.repositories else {return}
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let persistanceContainer = appDelegate.persistentContainer
+        let repositoriesEntity = NSEntityDescription.entity(forEntityName: "GitRepo", in: persistanceContainer.viewContext)!
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "GitRepo")
+       
+        
+        
+        for item in self.favoritesRepositories {
+            if repositories[indexPath.item].fullName == item.fullName {
+                do {
+                    request.predicate = NSPredicate(format: "fullName = %@", "\(item.fullName)")
+                    let data =  try persistanceContainer.viewContext.fetch(request)
+                    for object in data {
+                        persistanceContainer.viewContext.delete(object as! NSManagedObject)
+                    }
+                    try persistanceContainer.viewContext.save()
+                    self.favoritesRepositories = try viewModel?.getFavorityRepositories() as! [Repository]
+                    tableView.reloadData()
+                } catch {
+                        
+                    }
+            return
+            }
+        }
+        
+        
+        let rep = NSManagedObject(entity: repositoriesEntity, insertInto: persistanceContainer.viewContext)
+        rep.setValue(repositories[indexPath.item].id, forKey: "id")
+        rep.setValue(repositories[indexPath.item].nodeID, forKey: "nodeID")
+        rep.setValue(repositories[indexPath.item].name, forKey: "name")
+        rep.setValue(repositories[indexPath.item].fullName, forKey: "fullName")
+        rep.setValue(repositories[indexPath.item].itemPrivate, forKey: "itemPrivate")
+        rep.setValue(repositories[indexPath.item].owner.login, forKey: "ownerLogin")
+        rep.setValue(repositories[indexPath.item].owner.id, forKey: "ownerId")
+        rep.setValue(repositories[indexPath.item].owner.nodeID, forKey: "ownerNodeID")
+        rep.setValue(repositories[indexPath.item].owner.avatarURL, forKey: "ownerAvatarURL")
+        rep.setValue(repositories[indexPath.item].owner.htmlURL, forKey: "ownerHtmlURL")
+        rep.setValue(repositories[indexPath.item].itemDescription, forKey: "itemDescription")
+        rep.setValue(repositories[indexPath.item].createdAt, forKey: "createdAt")
+        rep.setValue(repositories[indexPath.item].watchers, forKey: "watchers")
+        rep.setValue(repositories[indexPath.item].htmlURL, forKey: "htmlURL")
+        
+        try? persistanceContainer.viewContext.save()
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let repositories = self.repositories {
@@ -343,7 +408,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryTableViewCell.identifier, for: indexPath) as? RepositoryTableViewCell else { return UITableViewCell() }
             
             let repository = repositories[indexPath.row]
-            cell.setupCell(repository: repository, isFavorite: false)
+            var isFavorite = false
+            for item in self.favoritesRepositories {
+                if item.fullName == repository.fullName
+                {isFavorite = true}
+            }
+           cell.setupCell(repository: repository, isFavorite: isFavorite, delegate: self)
             
             return cell
         } else {
@@ -358,6 +428,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
+
 
 // MARK: - Search Controller Extension Methods
 
