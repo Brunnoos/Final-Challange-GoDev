@@ -121,7 +121,6 @@ class FavoritesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupLayouts()
         setupPullToRefreshTableView()
         do {try getRepo()} catch{fatalError()}
@@ -195,8 +194,8 @@ class FavoritesViewController: UIViewController {
 }
 
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource, RepositoryTableViewCellDelegate {
-    
     func saveFavoriteRepo(indexPath: IndexPath) {
+
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let persistanceContainer = appDelegate.persistentContainer
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "GitRepo")

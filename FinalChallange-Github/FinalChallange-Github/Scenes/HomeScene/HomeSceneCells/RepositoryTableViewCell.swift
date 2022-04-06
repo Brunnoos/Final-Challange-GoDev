@@ -8,10 +8,8 @@
 import UIKit
 import Kingfisher
 import CoreData
+protocol RepositoryTableViewCellDelegate{func saveFavoriteRepo(indexPath: IndexPath)}
 
-protocol RepositoryTableViewCellDelegate{
-    func saveFavoriteRepo(indexPath: IndexPath)
-}
 
 class RepositoryTableViewCell: UITableViewCell {
     var delegate: RepositoryTableViewCellDelegate?
@@ -31,7 +29,6 @@ class RepositoryTableViewCell: UITableViewCell {
     
     lazy var repoNameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16)
         return label
@@ -44,7 +41,6 @@ class RepositoryTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         label.sizeToFit()
         label.textAlignment = .left
-        label.textColor = .white
         return label
     }()
     
@@ -106,7 +102,6 @@ class RepositoryTableViewCell: UITableViewCell {
     // MARK: - Layout Setup
     
     private func setupLayouts() {
-        backgroundColor = UIColor(hexString: "333")
         setupImageLayout()
         setupFavoriteButtonLayout()
         setupNameLayout()
