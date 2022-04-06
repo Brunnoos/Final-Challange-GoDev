@@ -31,6 +31,7 @@ class TeamMembersTableView: UIView {
         tableView.reloadData()
         tableView.showsVerticalScrollIndicator = false
         tableView.dataSource = self
+        tableView.backgroundColor = UIColor(hexString: "333")
         setupView()
     }
     

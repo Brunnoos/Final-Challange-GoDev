@@ -14,9 +14,10 @@ class MainTabBarController: UITabBarController {
 
         // Do any additional setup after loading the view.
         
-        view.backgroundColor = .systemBackground
-        UITabBar.appearance().barTintColor = .systemBackground
-        tabBar.tintColor = .label
+        view.backgroundColor = UIColor(hexString: "333")
+        UITabBar.appearance().barTintColor = UIColor(hexString: "333")
+        tabBar.tintColor = UIColor(hexString: "333")
+        
         setupVCs()
     }
     
@@ -24,6 +25,7 @@ class MainTabBarController: UITabBarController {
                                                       title: String,
                                                       image: UIImage) -> UIViewController {
         let navController = UINavigationController(rootViewController: rootViewController)
+        navController.navigationBar.tintColor = .white
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
         rootViewController.navigationItem.title = title
