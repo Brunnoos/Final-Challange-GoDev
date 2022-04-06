@@ -30,7 +30,7 @@ class TeamMemberTableViewCell: UITableViewCell {
     private lazy var personName: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
+        label.textColor = UIColor.black
         label.font = UIFont.systemFont(ofSize: 17)
         return label
     }()
@@ -38,7 +38,7 @@ class TeamMemberTableViewCell: UITableViewCell {
     private lazy var personDescription: UILabel = {
         let description = UILabel()
         description.translatesAutoresizingMaskIntoConstraints = false
-        description.textColor = .white
+        description.textColor = UIColor.black
         description.numberOfLines = 0
         description.font = UIFont.systemFont(ofSize: 14, weight: .light)
         return description
@@ -65,7 +65,6 @@ class TeamMemberTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         accessoryType = .disclosureIndicator
-        backgroundColor = UIColor(hexString: "333")
         setupView()
     }
     

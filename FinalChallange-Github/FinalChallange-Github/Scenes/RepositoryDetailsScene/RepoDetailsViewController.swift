@@ -234,7 +234,7 @@ class RepoDetailsViewController: UIViewController {
     private func setupAuthorNameComponent() {
         repoAuthorName.setupComponent(
             title: "Autor",
-            description: (viewModel.getRepository()?.owner.login ?? "Vazio"),
+            description: (viewModel.getRepository()?.name ?? "Vazio"),
             icon: UIImage(systemName: "person.circle")!,
             descriptionLink: nil)
     }
