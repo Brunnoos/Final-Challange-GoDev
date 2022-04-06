@@ -88,6 +88,8 @@ class SearchViewController: UIViewController {
         setupPullToRefreshTableView()
         
         defaultSearch()
+        
+        view.backgroundColor = UIColor(hexString: "333")
     }
     
     override func viewWillAppear(_ animated: Bool) {
