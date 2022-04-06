@@ -9,9 +9,9 @@ import UIKit
 class TeamMembersTableView: UIView {
         
     var devs: [TeamMember] = [
-        .init(name: "Amaryllis Baldrez", ocupation: "iOS Developer", image: "person2", description: "Sem descrição", phoneNumber: "(99) 999999999", email: "email@email.com", linkedinURL: "https://linkedin.com"),
-        .init(name: "Bruno Oliveira", ocupation: "iOS Developer", image: "bruno", description: "Sem descrição", phoneNumber: "(99) 999999999", email: "brunno.os159@gmail.com", linkedinURL: "brunoos159", twitterURL: "togante159"),
-        .init(name: "Rayanne Andrade", ocupation: "Android/IOS Developer", image: "ray", description: "Sem descrição", phoneNumber: "(99) 999999999", email: "email@email.com", linkedinURL: "https://linkedin.com")
+        .init(name: "Amaryllis Baldrez", ocupation: "iOS Developer", image: "person2", description: "Desenvolvedora iOS que adora comunidades de tecnologia, café gelado e bolo de cenoura.", phoneNumber: "(11) 971157878", email: "lyscalefi@gmail.com", linkedinURL: "amaryllis-baldrez"),
+        .init(name: "Bruno Oliveira", ocupation: "iOS Developer", image: "bruno", description: "Desenvolvedor de Jogos, há quase 2 anos, que decidiu mudar para o ramo de Software Mobile.", phoneNumber: "(85) 988512417", email: "brunno.os159@gmail.com", linkedinURL: "brunoos159", twitterURL: "togante159"),
+        .init(name: "Rayanne Andrade", ocupation: "Android/IOS Developer", image: "ray", description: "Engenheira da Computação e Android Developer na Ford Motor Company. Formação em Design e experiência como Designer UX/UI em uma Startup.", phoneNumber: "(71) 986675810", email: "ray_dsa@hotmail.com", linkedinURL: "rayandradez")
     ]
     
     //MARK: - Components
