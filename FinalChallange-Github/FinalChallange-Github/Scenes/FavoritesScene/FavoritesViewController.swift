@@ -95,10 +95,33 @@ class FavoritesViewController: UIViewController {
         return tableView
     }()
     
+    lazy var zeroResultsImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(systemName: "heart.slash")
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
+    lazy var zeroResultsTextLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.text = "Poxa, você ainda não tem Favoritos..."
+        return label
+    }()
+    
+    // MARK: - Private State Methods
+    
     private func onLoadingState() {
         DispatchQueue.main.async {
             self.loadingIndicator.startAnimating()
             self.tableView.isHidden = true
+            self.zeroResultsTextLabel.isHidden = true
+            self.zeroResultsImageView.isHidden = true
         }
     }
     
@@ -106,7 +129,8 @@ class FavoritesViewController: UIViewController {
         DispatchQueue.main.async {
             self.loadingIndicator.stopAnimating()
             self.tableView.isHidden = false
-            
+            self.zeroResultsTextLabel.isHidden = true
+            self.zeroResultsImageView.isHidden = true
         }
     }
     
@@ -114,10 +138,10 @@ class FavoritesViewController: UIViewController {
         DispatchQueue.main.async {
             self.loadingIndicator.stopAnimating()
             self.tableView.isHidden = true
+            self.zeroResultsTextLabel.isHidden = false
+            self.zeroResultsImageView.isHidden = false
         }
     }
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,7 +152,15 @@ class FavoritesViewController: UIViewController {
     }
     
     func getRepo() throws {
-         self.repositories =  try viewModel.getRepositories()
+        self.repositories =  try viewModel.getRepositories()
+        
+        if let repositories = self.repositories {
+            if repositories.count > 0 {
+                state = .normal
+            } else {
+                state = .zeroResults
+            }
+        }
     }
     
     // MARK: - Pull To Refresh Setup
@@ -153,6 +185,8 @@ class FavoritesViewController: UIViewController {
     private func setupLayouts() {
         setupTableViewLayout()
         setupLoadingIndicatorLayout()
+        setupZeroResultsImageLayout()
+        setupZeroResultsTextLayout()
     }
     
     private func setupTableViewLayout() {
@@ -179,22 +213,37 @@ class FavoritesViewController: UIViewController {
         ])
     }
 
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupZeroResultsImageLayout() {
+        view.addSubview(zeroResultsImageView)
+        
+        NSLayoutConstraint.activate([
+            zeroResultsImageView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -40),
+            zeroResultsImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            zeroResultsImageView.heightAnchor.constraint(equalToConstant: 48),
+            zeroResultsImageView.widthAnchor.constraint(equalToConstant: 48)
+        ])
     }
-    */
+    
+    private func setupZeroResultsTextLayout() {
+        view.addSubview(zeroResultsTextLabel)
+        
+        NSLayoutConstraint.activate([
+            zeroResultsTextLabel.topAnchor.constraint(equalTo: zeroResultsImageView.bottomAnchor, constant: 12),
+            zeroResultsTextLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            zeroResultsTextLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            zeroResultsTextLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+        ])
+    }
 
 }
 
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource, RepositoryTableViewCellDelegate {
+    
     func saveFavoriteRepo(indexPath: IndexPath) {
+        // Unecessary since this cell should not be here if it's not Favorite
+    }
+    
+    func deleteFavoriteRepo(indexPath: IndexPath) {
 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let persistanceContainer = appDelegate.persistentContainer
@@ -212,10 +261,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource, R
 
         } catch {
                 
-            }
-        
-        
-        
+        }
     }
     
     
@@ -241,7 +287,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource, R
         } else {
             return 0
         }
-        }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         

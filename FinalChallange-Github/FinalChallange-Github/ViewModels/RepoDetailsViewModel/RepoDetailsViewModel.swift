@@ -10,8 +10,12 @@ import UIKit
 
 class RepoDetailsViewModel {
     
+    // MARK: - Private Properties
+    
     private var repository: Repository?
     private var repositoryURL: URL? = nil
+    
+    // MARK: - Public Methods
     
     func setRepository(repo: Repository) {
         repository = repo

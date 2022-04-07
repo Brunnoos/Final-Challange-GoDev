@@ -23,6 +23,8 @@ class RepoDetailsViewController: UIViewController {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 75
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -46,14 +48,17 @@ class RepoDetailsViewController: UIViewController {
     }()
     
     lazy var repoLinkButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .roundedRect)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(white: 0, alpha: 0.1)
         button.layer.cornerRadius = 6
         button.setTitleColor(.black, for: .normal)
         button.setTitle("Abrir Repositório", for: .normal)
         button.titleLabel?.textAlignment = .center
+        
+        /// Add Button animations
         button.addTarget(self, action: #selector(onRepoLinkButtonPressed), for: .touchUpInside)
+        
         return button
     }()
     
@@ -95,10 +100,6 @@ class RepoDetailsViewController: UIViewController {
         setupViewContent()
     }
     
-    @objc private func openRepositoryLink() {
-        
-    }
-    
     // MARK: - Setup View Functions
     
     func setRepository(repo: Repository) {
@@ -134,6 +135,8 @@ class RepoDetailsViewController: UIViewController {
         repoDescriptionLabel.text = description
     }
     
+    // MARK: - Repo Link Button Methods
+    
     @objc func onRepoLinkButtonPressed() {
         viewModel.openRepositoryLink()
     }
@@ -154,7 +157,7 @@ class RepoDetailsViewController: UIViewController {
         NSLayoutConstraint.activate([
             repoImageView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 20),
             repoImageView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            repoImageView.widthAnchor.constraint(equalToConstant: 200),
+            repoImageView.widthAnchor.constraint(equalToConstant: 150),
             repoImageView.heightAnchor.constraint(equalToConstant: 150)
         ])
     }
@@ -234,7 +237,7 @@ class RepoDetailsViewController: UIViewController {
     private func setupAuthorNameComponent() {
         repoAuthorName.setupComponent(
             title: "Autor",
-            description: (viewModel.getRepository()?.name ?? "Vazio"),
+            description: (viewModel.getRepository()?.owner.login ?? "Vazio"),
             icon: UIImage(systemName: "person.circle")!,
             descriptionLink: nil)
     }
@@ -256,10 +259,16 @@ class RepoDetailsViewController: UIViewController {
     }
     
     private func setupLicenseComponent() {
-        repoLicense.setupComponent(
-            title: "Licença",
-            description: (viewModel.getRepositoryLicenseName() ?? "Vazio"),
-            icon: UIImage(systemName: "network")!,
-            descriptionLink: nil)
+        if let licenceName = viewModel.getRepositoryLicenseName() {
+            repoLicense.isHidden = false
+            repoLicense.setupComponent(
+                title: "Licença",
+                description: licenceName,
+                icon: UIImage(systemName: "network")!,
+                descriptionLink: nil)
+        } else {
+            repoLicense.isHidden = true
+        }
+        
     }
 }

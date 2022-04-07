@@ -8,14 +8,22 @@
 import UIKit
 import Kingfisher
 import CoreData
-protocol RepositoryTableViewCellDelegate{func saveFavoriteRepo(indexPath: IndexPath)}
 
+
+protocol RepositoryTableViewCellDelegate {
+    func saveFavoriteRepo(indexPath: IndexPath)
+    func deleteFavoriteRepo(indexPath: IndexPath)
+}
 
 class RepositoryTableViewCell: UITableViewCell {
     var delegate: RepositoryTableViewCellDelegate?
     // MARK: - Static Properties
     
     static let identifier = "RepositoryTableViewCell"
+    
+    // MARK: - Private Properties
+    
+    private var isFavorite = false
     
     // MARK: - Lazy Properties
     
@@ -50,17 +58,19 @@ class RepositoryTableViewCell: UITableViewCell {
         return button
     }()
     
-    // MARK: - Cell Setup
+    // MARK: - Public Methods
     
     func setupCell(repository: Repository, isFavorite: Bool, delegate: RepositoryTableViewCellDelegate) {
         setupLayouts()
         self.delegate = delegate
-        
+        self.isFavorite = isFavorite
         setupRepoName(name: repository.name)
         setupRepoImage(imageURL: repository.owner.avatarURL)
         setupRepoDescription(description: repository.itemDescription)
         setupFavoriteButton(isFavorite: isFavorite, repository: repository)
     }
+    
+    // MARK: - Private Methods
     
     private func setupRepoName(name: String) {
         repoNameLabel.text = name
@@ -84,8 +94,22 @@ class RepositoryTableViewCell: UITableViewCell {
     
     @objc func checkFavoritePressedButton() {
         guard let indexPath = self.indexPath else {return}
-        self.delegate?.saveFavoriteRepo(indexPath: indexPath)
-        repoFavoriteButton.setBackgroundImage(UIImage(systemName: "star.fill"), for: .normal)
+        
+        if !isFavorite {
+            self.delegate?.saveFavoriteRepo(indexPath: indexPath)
+            isFavorite = true
+        } else {
+            self.delegate?.deleteFavoriteRepo(indexPath: indexPath)
+            isFavorite = false
+        }
+        
+        DispatchQueue.main.async {
+            if self.isFavorite {
+                self.repoFavoriteButton.setBackgroundImage(UIImage(systemName: "star.fill"), for: .normal)
+            } else {
+                self.repoFavoriteButton.setBackgroundImage(UIImage(systemName: "star"), for: .normal)
+            }
+        }
     }
     
     private func setupFavoriteButton(isFavorite: Bool, repository: Repository) {
@@ -146,8 +170,8 @@ class RepositoryTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             repoFavoriteButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -6),
             repoFavoriteButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            repoFavoriteButton.heightAnchor.constraint(equalToConstant: 36),
-            repoFavoriteButton.widthAnchor.constraint(equalToConstant: 36)
+            repoFavoriteButton.heightAnchor.constraint(equalToConstant: 25),
+            repoFavoriteButton.widthAnchor.constraint(equalToConstant: 25)
         ])
     }
     

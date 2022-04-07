@@ -35,7 +35,7 @@ class SearchViewController: UIViewController {
         }
     }
     
-    private var favoritesRepositories: [Repository] = []
+    private var favoritesRepositories: [Repository]?
     
     private var refreshControl = UIRefreshControl()
     
@@ -75,6 +75,43 @@ class SearchViewController: UIViewController {
         return controller
     }()
     
+    lazy var errorImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(systemName: "exclamationmark.icloud")
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
+    lazy var errorTextLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    lazy var zeroResultsImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(systemName: "exclamationmark.icloud")
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
+    lazy var zeroResultsTextLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.text = "Nenhum resultado foi encontrado para a busca"
+        return label
+    }()
+    
     // MARK: - View Controller Methods
     
     override func viewDidLoad() {
@@ -99,15 +136,13 @@ class SearchViewController: UIViewController {
         if let tableViewSelected = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: tableViewSelected, animated: true)
         }
-        
      
-            do {try getRepo()} catch{fatalError()}
-            tableView.reloadData()
-        
+        getRepo()
+        tableView.reloadData()
     }
     
-    func getRepo() throws {
-        self.favoritesRepositories = try viewModel?.getFavorityRepositories() as! [Repository]
+    func getRepo() {
+        self.favoritesRepositories = viewModel?.getFavorityRepositories()
     }
     
     // MARK: - Navigation Controller Setup
@@ -162,6 +197,10 @@ class SearchViewController: UIViewController {
         DispatchQueue.main.async {
             self.loadingIndicator.startAnimating()
             self.tableView.isHidden = true
+            self.errorImageView.isHidden = true
+            self.errorTextLabel.isHidden = true
+            self.zeroResultsImageView.isHidden = true
+            self.zeroResultsTextLabel.isHidden = true
         }
     }
     
@@ -169,7 +208,10 @@ class SearchViewController: UIViewController {
         DispatchQueue.main.async {
             self.loadingIndicator.stopAnimating()
             self.tableView.isHidden = false
-            
+            self.errorImageView.isHidden = true
+            self.errorTextLabel.isHidden = true
+            self.zeroResultsImageView.isHidden = true
+            self.zeroResultsTextLabel.isHidden = true
         }
     }
     
@@ -177,6 +219,10 @@ class SearchViewController: UIViewController {
         DispatchQueue.main.async {
             self.loadingIndicator.stopAnimating()
             self.tableView.isHidden = true
+            self.errorImageView.isHidden = true
+            self.errorTextLabel.isHidden = true
+            self.zeroResultsImageView.isHidden = false
+            self.zeroResultsTextLabel.isHidden = false
         }
     }
     
@@ -184,6 +230,10 @@ class SearchViewController: UIViewController {
         DispatchQueue.main.async {
             self.loadingIndicator.stopAnimating()
             self.tableView.isHidden = true
+            self.errorImageView.isHidden = false
+            self.errorTextLabel.isHidden = false
+            self.zeroResultsImageView.isHidden = true
+            self.zeroResultsTextLabel.isHidden = true
         }
     }
     
@@ -261,6 +311,12 @@ class SearchViewController: UIViewController {
     private func setupLayouts() {
         setupTableViewLayout()
         setupLoadingIndicatorLayout()
+        
+        setupErrorImageLayout()
+        setupErrorTextLayout()
+        
+        setupZeroResultsImageLayout()
+        setupZeroResultsTextLayout()
     }
     
     private func setupTableViewLayout() {
@@ -286,6 +342,51 @@ class SearchViewController: UIViewController {
             loadingIndicator.widthAnchor.constraint(equalToConstant: 40)
         ])
     }
+    
+    private func setupErrorImageLayout() {
+        view.addSubview(errorImageView)
+        
+        NSLayoutConstraint.activate([
+            errorImageView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -40),
+            errorImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            errorImageView.heightAnchor.constraint(equalToConstant: 48),
+            errorImageView.widthAnchor.constraint(equalToConstant: 48)
+        ])
+    }
+    
+    private func setupErrorTextLayout() {
+        view.addSubview(errorTextLabel)
+        
+        NSLayoutConstraint.activate([
+            errorTextLabel.topAnchor.constraint(equalTo: errorImageView.bottomAnchor, constant: 12),
+            errorTextLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            errorTextLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            errorTextLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+        ])
+    }
+    
+    private func setupZeroResultsImageLayout() {
+        view.addSubview(zeroResultsImageView)
+        
+        NSLayoutConstraint.activate([
+            zeroResultsImageView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -40),
+            zeroResultsImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            zeroResultsImageView.heightAnchor.constraint(equalToConstant: 48),
+            zeroResultsImageView.widthAnchor.constraint(equalToConstant: 48)
+        ])
+    }
+    
+    private func setupZeroResultsTextLayout() {
+        view.addSubview(zeroResultsTextLabel)
+        
+        NSLayoutConstraint.activate([
+            zeroResultsTextLabel.topAnchor.constraint(equalTo: zeroResultsImageView.bottomAnchor, constant: 12),
+            zeroResultsTextLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            zeroResultsTextLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            zeroResultsTextLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+        ])
+    }
+
 }
 
 // MARK: - Search Delegate Methods
@@ -294,10 +395,9 @@ extension SearchViewController: SearchServiceDelegate {
     func onSearchCompleted(isAdditional: Bool) {
         if let viewModel = viewModel {
             let foundRepositories = viewModel.getRepositories()
-            do {let favoritesRepositories = try viewModel.getFavorityRepositories()
-                self.favoritesRepositories = favoritesRepositories!
-            } catch{fatalError()
-            }
+            
+            self.favoritesRepositories = viewModel.getFavorityRepositories()
+            
             if let foundRepositories = foundRepositories {
                 
                 if isAdditional, var currentRepositories = self.repositories {
@@ -320,6 +420,7 @@ extension SearchViewController: SearchServiceDelegate {
     }
     
     func onSearchError(error: String) {
+        errorTextLabel.text = error
         state = .error
     }
 }
@@ -328,33 +429,31 @@ extension SearchViewController: SearchServiceDelegate {
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource, RepositoryTableViewCellDelegate {
     func saveFavoriteRepo(indexPath: IndexPath) {
-        guard let repositories = self.repositories else {return}
+        guard let repositories = self.repositories else { return }
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let persistanceContainer = appDelegate.persistentContainer
         let repositoriesEntity = NSEntityDescription.entity(forEntityName: "GitRepo", in: persistanceContainer.viewContext)!
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "GitRepo")
-       
         
-        
-        for item in self.favoritesRepositories {
-            if repositories[indexPath.item].fullName == item.fullName {
-                do {
-                    request.predicate = NSPredicate(format: "fullName = %@", "\(item.fullName)")
-                    let data =  try persistanceContainer.viewContext.fetch(request)
-                    for object in data {
-                        persistanceContainer.viewContext.delete(object as! NSManagedObject)
+        if let favoritesRepositories = self.favoritesRepositories {
+            for item in favoritesRepositories {
+                if repositories[indexPath.item].fullName == item.fullName {
+                    do {
+                        request.predicate = NSPredicate(format: "fullName = %@", "\(item.fullName)")
+                        let data =  try persistanceContainer.viewContext.fetch(request)
+                        for object in data {
+                            persistanceContainer.viewContext.delete(object as! NSManagedObject)
+                        }
+                        try persistanceContainer.viewContext.save()
+                        self.favoritesRepositories = viewModel?.getFavorityRepositories()
+                        tableView.reloadData()
+                    } catch {
+                        return
                     }
-                    try persistanceContainer.viewContext.save()
-                    self.favoritesRepositories = try viewModel?.getFavorityRepositories() as! [Repository]
-                    tableView.reloadData()
-                } catch {
-                        
-                    }
-            return
+                }
             }
         }
-        
         
         let rep = NSManagedObject(entity: repositoriesEntity, insertInto: persistanceContainer.viewContext)
         rep.setValue(repositories[indexPath.item].id, forKey: "id")
@@ -375,7 +474,25 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource, Repo
         try? persistanceContainer.viewContext.save()
     }
     
-    
+    func deleteFavoriteRepo(indexPath: IndexPath) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let persistanceContainer = appDelegate.persistentContainer
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "GitRepo")
+        
+        do {
+            request.predicate = NSPredicate(format: "fullName = %@", "\(self.repositories![indexPath.row].fullName)")
+            let data =  try persistanceContainer.viewContext.fetch(request)
+            for object in data {
+                persistanceContainer.viewContext.delete(object as! NSManagedObject)
+            }
+            try persistanceContainer.viewContext.save()
+            getRepo()
+            tableView.reloadData()
+
+        } catch {
+                
+        }
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let repositories = self.repositories {
@@ -409,11 +526,16 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource, Repo
             
             let repository = repositories[indexPath.row]
             var isFavorite = false
-            for item in self.favoritesRepositories {
-                if item.fullName == repository.fullName
-                {isFavorite = true}
+            
+            if let favoritesRepositories = self.favoritesRepositories {
+                for item in favoritesRepositories {
+                    if item.fullName == repository.fullName {
+                        isFavorite = true
+                    }
+                }
             }
-           cell.setupCell(repository: repository, isFavorite: isFavorite, delegate: self)
+            
+            cell.setupCell(repository: repository, isFavorite: isFavorite, delegate: self)
             
             return cell
         } else {

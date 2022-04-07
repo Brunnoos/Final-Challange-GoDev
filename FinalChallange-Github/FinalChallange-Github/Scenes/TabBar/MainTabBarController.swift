@@ -9,16 +9,16 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
 
+    // MARK: - Tab Bar Controller Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
-        view.backgroundColor = .systemBackground
-        UITabBar.appearance().barTintColor = .systemBackground
-        tabBar.tintColor = .label
+        setupTabBar()
         setupVCs()
     }
+    
+    // MARK: - Fileprivate Methods
     
     fileprivate func createNavController(for rootViewController: UIViewController,
                                                       title: String,
@@ -29,6 +29,16 @@ class MainTabBarController: UITabBarController {
         rootViewController.navigationItem.title = title
         return navController
     }
+    
+    // MARK: - Private Methods
+    
+    private func setupTabBar() {
+        view.backgroundColor = .systemBackground
+        UITabBar.appearance().barTintColor = .systemBackground
+        tabBar.tintColor = .label
+    }
+    
+    // MARK: - Public Methods
     
     func setupVCs() {
         viewControllers = [
