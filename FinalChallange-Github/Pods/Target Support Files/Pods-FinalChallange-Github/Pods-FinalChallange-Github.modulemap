@@ -1,0 +1,6 @@
+module Pods_FinalChallange_Github {
+  umbrella header "Pods-FinalChallange-Github-umbrella.h"
+
+  export *
+  module * { export * }
+}
